@@ -1,0 +1,32 @@
+name: Image CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Image checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check changed images
+        env:
+          BEFORE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            git diff --name-only --diff-filter=ACMR "$BEFORE" HEAD -- 'images/*/Dockerfile' |
+              while IFS= read -r file; do bash scripts/image.sh check "$(basename "$(dirname "$file")")"; done
+          else
+            for file in images/*/Dockerfile; do
+              bash scripts/image.sh check "$(basename "$(dirname "$file")")"
+            done
+          fi
