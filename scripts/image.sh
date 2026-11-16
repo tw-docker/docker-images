@@ -7,9 +7,9 @@ image=$2
 [[ "$image" =~ ^[a-z0-9][a-z0-9.-]*$ ]]
 test -f "images/$image/Dockerfile"
 
-registry=ghcr.io/tw-docker/docker-images
-candidate="$registry:$image-${GITHUB_SHA:0:12}-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
-stable="$registry:$image-stable"
+registry="ghcr.io/tw-docker/$image"
+candidate="$registry:build-${GITHUB_SHA:0:12}-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+stable="$registry:stable"
 trivy=ghcr.io/aquasecurity/trivy:0.76.2@sha256:8f6bb947dbc528902e11f2f5be52f7b519f6a39d5d148f41166f2040499768fb
 
 if [[ "$image" == upstream-* ]]; then
@@ -29,7 +29,6 @@ if [[ "$image" == excalidraw-patch ]]; then
   endpoint=$(docker port "$container" 80/tcp)
   curl -fsS --retry 12 --retry-connrefused --max-time 5 "http://$endpoint/" -o "$scratch/index.html"
   grep -qi excalidraw "$scratch/index.html"
-  stable="$registry:stable"
 else
   case "$image" in
     docker-socket-proxy*-patch) command=(haproxy -v) ;;

@@ -1,8 +1,8 @@
 # Container images
 
-Pull the patched Excalidraw build from `ghcr.io/tw-docker/docker-images:stable` and other patched builds using their directory name with a `-stable` suffix. Builds target Linux on amd64.
+Every image has its own package at `ghcr.io/tw-docker/<image>:stable`. The package name matches the directory under `images/`. For example, pull Excalidraw at `ghcr.io/tw-docker/excalidraw-patch:stable`. Builds target Linux on amd64.
 
-Upstream mirrors copy the exact Linux/amd64 manifest and layers. The mirror tag is the directory name with a `-stable` suffix. Tags ending in a digest fragment preserve previous upstream builds. Each Dockerfile records the upstream digest. Distinct deployed versions have distinct mirror tags.
+Upstream mirrors copy the exact Linux/amd64 manifest and layers. Use the `:stable` tag for each mirror. Tags prefixed with `sha256-` preserve previous upstream builds. Each Dockerfile records the upstream digest. Distinct deployed versions have distinct packages.
 
 Dependabot checks tagged upstream references. A verified digest change on the same tag can merge automatically. Version and tag changes need review. Patched builds pass a smoke test and a Trivy scan before publishing. The initial mirrors preserve the source images as-is. CI scans proposed mirror updates before merging.
 

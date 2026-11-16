@@ -8,6 +8,10 @@ on:
         description: Image directory, all, patches, or mirrors
         required: true
         type: string
+      migrate_existing:
+        description: Copy existing verified stable images from the legacy package
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -25,10 +29,20 @@ jobs:
         id: list
         env:
           SELECTION: ${{ inputs.image || 'patches' }}
+          MIGRATE_EXISTING: ${{ inputs.migrate_existing || false }}
         run: |
           selected=()
+          if [[ "$MIGRATE_EXISTING" == true ]]; then
+            bash scripts/install-crane.sh
+            tags=$("$RUNNER_TEMP/crane" ls ghcr.io/tw-docker/docker-images)
+          fi
           for path in images/*/Dockerfile; do
             image=$(basename "$(dirname "$path")")
+            if [[ "$MIGRATE_EXISTING" == true ]]; then
+              source_tag="$image-stable"
+              if [[ "$image" == excalidraw-patch ]]; then source_tag=stable; fi
+              grep -Fxq "$source_tag" <<< "$tags" || continue
+            fi
             case "$SELECTION" in
               all) selected+=("$image") ;;
               patches) if [[ "$image" == *-patch ]]; then selected+=("$image"); fi ;;
@@ -64,10 +78,29 @@ jobs:
         env:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SELECTED_IMAGE: ${{ matrix.image }}
+          MIGRATE_EXISTING: ${{ inputs.migrate_existing || false }}
         run: |
           export DOCKER_CONFIG
           DOCKER_CONFIG=$(mktemp -d)
           trap 'rm -rf "$DOCKER_CONFIG"' EXIT
           printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
           unset GHCR_TOKEN
-          GITHUB_SHA=$(git rev-parse HEAD) bash scripts/image.sh publish "$SELECTED_IMAGE"
+          if [[ "$MIGRATE_EXISTING" == true ]]; then
+            bash scripts/install-crane.sh
+            crane="$RUNNER_TEMP/crane"
+            source_tag="$SELECTED_IMAGE-stable"
+            if [[ "$SELECTED_IMAGE" == excalidraw-patch ]]; then source_tag=stable; fi
+            legacy=ghcr.io/tw-docker/docker-images
+            destination="ghcr.io/tw-docker/$SELECTED_IMAGE"
+            digest=$("$crane" digest "$legacy:$source_tag")
+            [[ "$digest" =~ ^sha256:[a-f0-9]{64}$ ]]
+            snapshot="sha256-${digest:7:16}"
+            "$crane" copy "$legacy@$digest" "$destination:$snapshot"
+            test "$("$crane" digest "$destination:$snapshot")" = "$digest"
+            if ! "$crane" digest "$destination:stable"; then
+              "$crane" tag "$destination:$snapshot" stable
+              test "$("$crane" digest "$destination:stable")" = "$digest"
+            fi
+          else
+            GITHUB_SHA=$(git rev-parse HEAD) bash scripts/image.sh publish "$SELECTED_IMAGE"
+          fi

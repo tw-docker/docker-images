@@ -25,10 +25,10 @@ if [[ "$GITHUB_EVENT_NAME" == pull_request ]]; then
 fi
 
 if [[ "$mode" == publish ]]; then
-  destination=ghcr.io/tw-docker/docker-images
-  snapshot="$image-${digest:7:16}"
+  destination="ghcr.io/tw-docker/$image"
+  snapshot="sha256-${digest:7:16}"
   "$crane" copy "$platform_image" "$destination:$snapshot"
   test "$("$crane" digest "$destination:$snapshot")" = "$digest"
-  "$crane" tag "$destination:$snapshot" "$image-stable"
-  test "$("$crane" digest "$destination:$image-stable")" = "$digest"
+  "$crane" tag "$destination:$snapshot" stable
+  test "$("$crane" digest "$destination:stable")" = "$digest"
 fi
