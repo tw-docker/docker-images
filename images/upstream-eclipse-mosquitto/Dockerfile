@@ -1,0 +1,1 @@
+FROM docker.io/library/eclipse-mosquitto@sha256:467ee25e5b6aaaa5562e1f64c60f723274ebb2dbad62cbb89f981d051eb7c6b7

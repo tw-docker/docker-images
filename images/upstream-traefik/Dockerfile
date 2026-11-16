@@ -1,0 +1,1 @@
+FROM docker.io/library/traefik:latest@sha256:b7b1b31e6440de0b1f7c4e0f6cf0a0f3f004866761d30c025fe00c80daaf7d9c

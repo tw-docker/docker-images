@@ -1,0 +1,1 @@
+FROM ghcr.io/maziggy/bambuddy@sha256:f69650347010b279c85373fa52f0c9aab3982b5f10704fabbd76d7e46158eef5

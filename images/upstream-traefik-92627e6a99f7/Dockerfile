@@ -1,0 +1,1 @@
+FROM docker.io/library/traefik@sha256:92627e6a99f71b8e46634acea28130b9f14bec5d9887ad15161007e1b652afe1

@@ -1,0 +1,2 @@
+FROM dperson/samba:latest@sha256:66088b78a19810dd1457a8f39340e95e663c728083efa5fe7dc0d40b2478e869
+RUN apk upgrade --no-cache apk-tools avahi-libs busybox expat gmp gnutls libcrypto1.1 libldap libsasl libsmbclient libssl1.1 libwbclient lz4-libs musl musl-utils ncurses-libs ncurses-terminfo-base nettle p11-kit samba samba-client samba-client-libs samba-common samba-common-server-libs samba-common-tools samba-libs samba-server samba-util-libs ssl_client xz-libs zlib zstd-libs

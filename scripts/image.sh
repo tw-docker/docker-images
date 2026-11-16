@@ -12,6 +12,10 @@ candidate="$registry:$image-${GITHUB_SHA:0:12}-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMP
 stable="$registry:$image-stable"
 trivy=ghcr.io/aquasecurity/trivy:0.76.2@sha256:8f6bb947dbc528902e11f2f5be52f7b519f6a39d5d148f41166f2040499768fb
 
+if [[ "$image" == upstream-* ]]; then
+  exec bash scripts/mirror.sh "$mode" "$image" "$trivy"
+fi
+
 docker build --pull --no-cache --platform linux/amd64 \
   --label "org.opencontainers.image.source=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" \
   --label "org.opencontainers.image.revision=$GITHUB_SHA" \
@@ -27,7 +31,17 @@ if [[ "$image" == excalidraw-patch ]]; then
   grep -qi excalidraw "$scratch/index.html"
   stable="$registry:stable"
 else
-  docker run --rm --network none --entrypoint /bin/sh "$candidate" -ec 'true'
+  case "$image" in
+    docker-socket-proxy*-patch) command=(haproxy -v) ;;
+    forgejo-patch) command=(forgejo --version) ;;
+    forgejo-runner-patch) command=(forgejo-runner --version) ;;
+    nginx-patch) command=(nginx -v) ;;
+    nodered-patch|zigbee2mqtt-patch) command=(node --version) ;;
+    samba-patch) command=(smbd --version) ;;
+    syncthing-patch) command=(syncthing --version) ;;
+    *) exit 1 ;;
+  esac
+  docker run --rm --network none --entrypoint "${command[0]}" "$candidate" "${command[@]:1}"
 fi
 docker save -o "$scratch/image.tar" "$candidate"
 docker run --rm -v "$scratch/image.tar:/image.tar:ro" "$trivy" image \

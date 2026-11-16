@@ -1,0 +1,1 @@
+FROM docker.io/gitlab/gitlab-runner:latest@sha256:ffe21f021468d4aa1e56f05316d88597c23bf4818840e8edaa858131fabd7991

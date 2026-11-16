@@ -1,0 +1,1 @@
+FROM docker.io/eqalpha/keydb@sha256:6537505c42355ca1f571276bddf83f5b750f760f07b2a185a676481791e388ac

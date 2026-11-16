@@ -1,0 +1,1 @@
+FROM docker.io/amir20/dozzle:latest@sha256:244f218c876d6ed766277e71a537f34bfb2c01829e1927737e3673a8327deeb8

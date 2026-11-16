@@ -1,0 +1,1 @@
+FROM docker.io/koenkk/zigbee2mqtt:2.10.1@sha256:67c26dcf8346aced02fe1380a6afd1b57268bcef10faae3f6057c13d5d3dfa80

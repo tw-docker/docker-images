@@ -1,0 +1,1 @@
+FROM docker.io/adguard/adguardhome:latest@sha256:e2e1b48c832f7705be915873f95de0d5114de573736441d7f2923a8a6293027c

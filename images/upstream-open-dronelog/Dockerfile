@@ -1,0 +1,1 @@
+FROM ghcr.io/arpanghosh8453/open-dronelog@sha256:c6db734d2b7bd355c6e4f0b08e2e3b0a1bb36d18a8aa803769b4abfcb5fc642a

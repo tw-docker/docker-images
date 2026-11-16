@@ -1,0 +1,1 @@
+FROM docker.io/gotify/server:latest@sha256:44fc5bbd1c0618878e33073d38c2c13126b48f245c3fe12236b1da48eb203b86

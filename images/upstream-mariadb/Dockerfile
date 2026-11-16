@@ -1,0 +1,1 @@
+FROM docker.io/library/mariadb:10.11@sha256:d769e37960821dfdcf096954f6e7ac89f747e116c1bba98e48edd265dfc7deae

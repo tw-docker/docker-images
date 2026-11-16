@@ -1,0 +1,1 @@
+FROM ghcr.io/gtsteffaniak/filebrowser@sha256:de2b4c4d18485ea202ab2cdada5bd25d8f0b8ed071712c8216a67194c31285ae

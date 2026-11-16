@@ -1,0 +1,1 @@
+FROM docker.io/gitlab/gitlab-runner:alpine-v19.5.2@sha256:800157105b792ed3f0c9bc0aa6bc6427d66889cafd2c8aae4c4c177194699144

@@ -1,0 +1,1 @@
+FROM docker.io/henrygd/beszel:latest@sha256:b0be90bd4aee2993fde763032a5098ce4386fba43cfe5031ec017b8d9e8c97a2

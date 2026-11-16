@@ -1,0 +1,1 @@
+FROM ghcr.io/getarcaneapp/agent:v3.0.1@sha256:4285608a7a085acb8296c5a76261fd1b738a40760dcf46e48a4361240cd94692

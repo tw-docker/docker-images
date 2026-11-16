@@ -1,0 +1,1 @@
+FROM docker.io/library/postgres:18-alpine3.24@sha256:1018733457011bf88d81db98cf43aac6d5150afc18787dbe204771fedf80ff95

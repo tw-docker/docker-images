@@ -1,39 +1,73 @@
 name: Publish stable images
 on:
+  schedule:
+    - cron: '23 4 * * 2'
   workflow_dispatch:
     inputs:
       image:
-        description: Image directory to publish, or all for every patch image
+        description: Image directory, all, patches, or mirrors
         required: true
         type: string
+
 permissions:
   contents: read
-  packages: write
 
 jobs:
-  publish:
-    if: github.ref == 'refs/heads/main'
+  select:
     runs-on: ubuntu-latest
-    timeout-minutes: 100
-    concurrency:
-      group: stable-${{ inputs.image }}
+    outputs:
+      images: ${{ steps.list.outputs.images }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           persist-credentials: false
-      - name: Check and publish
+      - name: Select images
+        id: list
+        env:
+          SELECTION: ${{ inputs.image || 'patches' }}
+        run: |
+          selected=()
+          for path in images/*/Dockerfile; do
+            image=$(basename "$(dirname "$path")")
+            case "$SELECTION" in
+              all) selected+=("$image") ;;
+              patches) if [[ "$image" == *-patch ]]; then selected+=("$image"); fi ;;
+              mirrors) if [[ "$image" == upstream-* ]]; then selected+=("$image"); fi ;;
+              *) if [[ "$image" == "$SELECTION" ]]; then selected+=("$image"); fi ;;
+            esac
+          done
+          test "${#selected[@]}" -gt 0
+          echo "images=$(jq -cn --args '$ARGS.positional' "${selected[@]}")" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: select
+    if: github.ref == 'refs/heads/main'
+    name: Publish ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        image: ${{ fromJSON(needs.select.outputs.images) }}
+    concurrency:
+      group: publish-${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Check and publish selected image
         env:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SELECTED_IMAGE: ${{ inputs.image }}
+          SELECTED_IMAGE: ${{ matrix.image }}
         run: |
           export DOCKER_CONFIG
           DOCKER_CONFIG=$(mktemp -d)
           trap 'rm -rf "$DOCKER_CONFIG"' EXIT
           printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
-          if [ "$SELECTED_IMAGE" = all ]; then
-            for file in images/*/Dockerfile; do
-              bash scripts/image.sh publish "$(basename "$(dirname "$file")")"
-            done
-          else
-            bash scripts/image.sh publish "$SELECTED_IMAGE"
-          fi
+          unset GHCR_TOKEN
+          GITHUB_SHA=$(git rev-parse HEAD) bash scripts/image.sh publish "$SELECTED_IMAGE"

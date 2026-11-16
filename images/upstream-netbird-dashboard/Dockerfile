@@ -1,0 +1,1 @@
+FROM docker.io/netbirdio/dashboard:latest@sha256:dbbec81fff42f6eb42ce0594033eafc1ae1c69b25a2595cc90e8097f0bcd468d

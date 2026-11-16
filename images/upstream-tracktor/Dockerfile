@@ -1,0 +1,1 @@
+FROM ghcr.io/javedh-dev/tracktor:latest@sha256:edb439550243e0c2589daf2a72fc51805e69cbd27462fc979128a4bb66292138

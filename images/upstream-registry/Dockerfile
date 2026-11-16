@@ -1,0 +1,1 @@
+FROM docker.io/library/registry:latest@sha256:38907510915c3f1604c7e83d6ab602ab3020d092f73bdaed8696773693ff768c

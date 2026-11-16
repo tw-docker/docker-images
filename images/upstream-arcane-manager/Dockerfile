@@ -1,0 +1,1 @@
+FROM ghcr.io/getarcaneapp/manager:v3.0.1@sha256:80a2f71c60bc1bff3e618e6e71efec98ad365ba4f0395aa76e234d8ba75e5a99

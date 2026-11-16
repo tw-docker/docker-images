@@ -1,0 +1,1 @@
+FROM docker.io/binwiederhier/ntfy:latest@sha256:771309aecfce18d8fe2bfb8069994ddd6be6ca6ccdd7badace3d791a0045ff0d

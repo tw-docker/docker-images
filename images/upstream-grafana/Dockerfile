@@ -1,0 +1,1 @@
+FROM docker.io/grafana/grafana@sha256:488984b716c0862639f91a698adbe2862677a5a07bad42da5f03f3030883b205

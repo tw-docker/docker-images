@@ -1,0 +1,2 @@
+FROM nginx:alpine@sha256:583b7f2fce1cdb8da5ad5c39ebd3c33b98b87d493190e548bdee1fa8c619c311
+RUN apk upgrade --no-cache libxslt zlib

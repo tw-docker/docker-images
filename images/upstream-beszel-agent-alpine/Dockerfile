@@ -1,0 +1,1 @@
+FROM docker.io/henrygd/beszel-agent:alpine@sha256:2ea69d4c9a6690d07368d50762cf606281d96b447cdd411855c87ff4027465d9

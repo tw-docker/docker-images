@@ -1,0 +1,1 @@
+FROM docker.io/rustfs/rustfs:latest@sha256:ed9210d6411d77ffceb70d94b964a3cb7d225983368bc25bebe01e995293dcc2

@@ -1,0 +1,1 @@
+FROM docker.io/freikin/dawarich:latest@sha256:b8ee8d9fdff92a9d6ca570f98e0e875624f4bfb24b61363f8246bba124d5849d

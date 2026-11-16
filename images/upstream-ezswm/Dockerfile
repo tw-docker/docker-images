@@ -1,0 +1,1 @@
+FROM ghcr.io/slgfire/ezswm:latest@sha256:cfb36c96e092bd663db903a978ceb5aa9a77f4ce6daf47577f682b1ecc3596a3

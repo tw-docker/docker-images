@@ -1,0 +1,2 @@
+FROM tecnativa/docker-socket-proxy:latest@sha256:1f5038b54f06c3e18422902cf00ba21803d1c97805aae032e5e6673d532d3459
+RUN apk upgrade --no-cache libcrypto3 libssl3 musl musl-utils pcre2 zlib

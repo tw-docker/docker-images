@@ -1,0 +1,1 @@
+FROM docker.io/library/influxdb:1.13.2-alpine@sha256:4c5a9e4c2178365839e41c9d11dccd9690615873ee289127a07297a09884e91a

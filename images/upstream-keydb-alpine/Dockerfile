@@ -1,0 +1,1 @@
+FROM docker.io/eqalpha/keydb:alpine@sha256:f1d60f12cb3c933b169886657333a17018580c0fdbde5c3b3717e652e7af3f0a

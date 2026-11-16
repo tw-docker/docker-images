@@ -1,0 +1,1 @@
+FROM docker.io/netbirdio/netbird-server:latest@sha256:7cf0268831221d2d4cc8ca89ca3d8d9419f890f0abb72c1fa9d00aae07e0b788

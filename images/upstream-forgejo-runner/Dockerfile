@@ -1,0 +1,1 @@
+FROM data.forgejo.org/forgejo/runner:12@sha256:48b0539854bfc769fbf629725e089e35cfa1227ddedc7e45436b83bb9502ae27

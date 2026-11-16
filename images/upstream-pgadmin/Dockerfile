@@ -1,0 +1,1 @@
+FROM docker.io/dpage/pgadmin4:latest@sha256:3591b3d02910dcd817dec6fcaa681c278ba6966945283dd0ea0042731c330c83
