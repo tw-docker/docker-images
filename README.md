@@ -18,7 +18,7 @@ Dependabot checks tagged upstream references. A verified digest change on the sa
 | [`upstream-eclipse-mosquitto`](images/upstream-eclipse-mosquitto/Dockerfile) | [github.com/eclipse-mosquitto/mosquitto/blob/master/LICENSE.txt](<https://github.com/eclipse-mosquitto/mosquitto/blob/master/LICENSE.txt>) | EPL-2.0 OR BSD-3-Clause |
 | [`upstream-keydb-alpine`](images/upstream-keydb-alpine/Dockerfile) | [github.com/Snapchat/KeyDB](<https://github.com/Snapchat/KeyDB>) | BSD-3-Clause |
 | [`upstream-keydb-6537505c4235`](images/upstream-keydb-6537505c4235/Dockerfile) | [github.com/Snapchat/KeyDB](<https://github.com/Snapchat/KeyDB>) | BSD-3-Clause |
-| [`upstream-forgejo-runner`](images/upstream-forgejo-runner/Dockerfile) | [code.forgejo.org/forgejo/runner](<https://code.forgejo.org/forgejo/runner>) | MIT |
+| [`upstream-forgejo-runner`](images/upstream-forgejo-runner/Dockerfile) | [code.forgejo.org/forgejo/runner](<https://code.forgejo.org/forgejo/runner>) | GPL-3.0 |
 | [`upstream-dawarich`](images/upstream-dawarich/Dockerfile) | [github.com/Freika/dawarich](<https://github.com/Freika/dawarich>) | AGPL-3.0 |
 | [`upstream-arcane-agent`](images/upstream-arcane-agent/Dockerfile) | [github.com/getarcaneapp/arcane](<https://github.com/getarcaneapp/arcane>) | BSD-3-Clause |
 | [`upstream-arcane-manager`](images/upstream-arcane-manager/Dockerfile) | [github.com/getarcaneapp/arcane](<https://github.com/getarcaneapp/arcane>) | BSD-3-Clause |
@@ -56,15 +56,15 @@ Dependabot checks tagged upstream references. A verified digest change on the sa
 | [`upstream-postgres-18.7-alpine`](images/upstream-postgres-18.7-alpine/Dockerfile) | [github.com/docker-library/postgres](<https://github.com/docker-library/postgres>) | MIT |
 | [`upstream-postgres-123b17998cca`](images/upstream-postgres-123b17998cca/Dockerfile) | [github.com/docker-library/postgres](<https://github.com/docker-library/postgres>) | MIT |
 | [`upstream-redis-6.2-alpine`](images/upstream-redis-6.2-alpine/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | BSD-3-Clause |
-| [`upstream-redis-7-alpine`](images/upstream-redis-7-alpine/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | BSD-3-Clause |
-| [`upstream-redis-7.4-alpine`](images/upstream-redis-7.4-alpine/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | BSD-3-Clause |
-| [`upstream-redis-8`](images/upstream-redis-8/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | BSD-3-Clause |
+| [`upstream-redis-7-alpine`](images/upstream-redis-7-alpine/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | [RSALv2 or SSPLv1](https://redis.io/legal/licenses/) |
+| [`upstream-redis-7.4-alpine`](images/upstream-redis-7.4-alpine/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | [RSALv2 or SSPLv1](https://redis.io/legal/licenses/) |
+| [`upstream-redis-8`](images/upstream-redis-8/Dockerfile) | [github.com/redis/docker-library-redis](<https://github.com/redis/docker-library-redis>) | [AGPL-3.0, RSALv2, or SSPLv1](https://redis.io/legal/licenses/) |
 | [`upstream-registry`](images/upstream-registry/Dockerfile) | [github.com/distribution/distribution](<https://github.com/distribution/distribution>) | Apache-2.0 |
 | [`upstream-registry-82f6ff4a7f98`](images/upstream-registry-82f6ff4a7f98/Dockerfile) | [github.com/distribution/distribution](<https://github.com/distribution/distribution>) | Apache-2.0 |
 | [`upstream-rustfs`](images/upstream-rustfs/Dockerfile) | [github.com/rustfs/rustfs](<https://github.com/rustfs/rustfs>) | Apache-2.0 |
 | [`upstream-rustfs-1cfa82fb394a`](images/upstream-rustfs-1cfa82fb394a/Dockerfile) | [github.com/rustfs/rustfs](<https://github.com/rustfs/rustfs>) | Apache-2.0 |
 | [`upstream-ezswm`](images/upstream-ezswm/Dockerfile) | [github.com/slgfire/ezswm](<https://github.com/slgfire/ezswm>) | GPL-3.0 |
-| [`upstream-sonarqube`](images/upstream-sonarqube/Dockerfile) | [github.com/SonarSource/docker-sonarqube](<https://github.com/SonarSource/docker-sonarqube>) | LGPL-3.0 |
+| [`upstream-sonarqube`](images/upstream-sonarqube/Dockerfile) | [github.com/SonarSource/docker-sonarqube](<https://github.com/SonarSource/docker-sonarqube>) | LGPL-3.0 (packaging project) |
 | [`upstream-docker-socket-proxy`](images/upstream-docker-socket-proxy/Dockerfile) | [github.com/Tecnativa/docker-socket-proxy](<https://github.com/Tecnativa/docker-socket-proxy>) | Apache-2.0 |
 | [`upstream-traefik`](images/upstream-traefik/Dockerfile) | [github.com/traefik/traefik](<https://github.com/traefik/traefik>) | MIT |
 | [`upstream-traefik-92627e6a99f7`](images/upstream-traefik-92627e6a99f7/Dockerfile) | [github.com/traefik/traefik](<https://github.com/traefik/traefik>) | MIT |
